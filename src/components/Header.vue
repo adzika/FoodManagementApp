@@ -9,6 +9,7 @@
       <b-collapse is-nav id="nav_collapse">
 
         <b-navbar-nav>
+          <router-link class="nav-link" to="/category/freezer" active-class="active">Freezer</router-link>
           <router-link class="nav-link" to="/category/pantry" active-class="active">Pantry</router-link>
           <router-link class="nav-link" to="/category/cleaning-supplies" active-class="active">Cleaning Supplies</router-link>
         </b-navbar-nav>

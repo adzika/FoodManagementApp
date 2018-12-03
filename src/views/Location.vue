@@ -16,16 +16,25 @@
         </label>
       </b-form>
     </div>
-    {{ category }}
+    <div id="itemsShown">
+      <b-table striped hover :items="items">
+      </b-table>
+    </div>
   </div>
 </template>
 
 <script>
+
   export default {
     data() {
       return {
         category: 'fridge'
       }
+    },
+    computed:{
+     items() {
+       return this.$store.getters.getItemsFromLocation(this.category);
+     },
     },
     watch: {
       '$route' (to, from) {
