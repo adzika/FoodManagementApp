@@ -29,7 +29,16 @@ export default new Vuex.Store({
     ],
     shoppingList: []
   },
-  mutations: {},
+  mutations: {
+    setLocations (state, location) {
+      state.locations = location;
+    },
+    addItem (state, {location, item}) {
+      //Check if the item is already added in the location
+      //If it's added, keep the name, change the quantity, best before
+      //If it's not, push it to the location
+    }
+  },
   actions: {},
   getters: {
     getItemsFromLocation: (state) => (locationName) => {
