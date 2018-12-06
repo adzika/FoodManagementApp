@@ -23,7 +23,13 @@
     </div>
 
     <div id="itemsShown">
-      <b-table striped hover :items="items">
+      <b-table striped hover :fields="fields" :items="items">
+        <template slot="restock" slot-scope="data">
+          <button>Restock</button>
+        </template>
+        <template slot="delete" slot-scope="data">
+          <button>Delete</button>
+        </template>
       </b-table>
     </div>
   </div>
@@ -34,7 +40,14 @@
   export default {
     data () {
       return {
-        category: 'fridge'
+        category: 'fridge',
+        fields: [
+          'name',
+          'quantity',
+          'restock',
+          'delete',
+          'bestBefore'
+        ]
       }
     },
     computed: {
