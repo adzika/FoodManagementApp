@@ -31,20 +31,45 @@ export default new Vuex.Store({
   },
   mutations: {
     setLocations (state, location) {
-      state.locations = location;
+      state.locations = location
     },
-    addItem (state, {location, item}) {
-      //Check if the item is already added in the location
-      //If it's added, keep the name, change the quantity, best before
-      //If it's not, push it to the location
+    addItem (state, payload) {
+      state.locations.find((location) => {
+        return location.name === payload.location
+      }).items.push({
+        name: payload.name,
+        quantity: payload.quantity,
+        bestBefore: payload.bestBefore
+      })
+    },
+    deleteItem (state, payload) {
+      state.locations.find((location) => {
+        return location.name === payload.location
+      }).items.splice(payload.index, 1)
+    },
+    updateItem (state, payload) {
+      state.locations.find((location) => {
+        return location.name === payload.location
+      }).items()
     }
   },
-  actions: {},
+  actions: {
+    addItem: ({ commit }, payload) => {
+      commit('addItem', payload)
+    },
+    deleteItem: ({ commit }, payload) => {
+      commit('deleteItem', payload)
+    },
+    updateItem: ({ commit }, payload) => {
+      commit('updateItem', payload)
+    }
+  }
+  ,
   getters: {
     getItemsFromLocation: (state) => (locationName) => {
       return state.locations.find((location) => {
         return location.name === locationName
-      }).items;
+      }).items
     }
   }
 })
